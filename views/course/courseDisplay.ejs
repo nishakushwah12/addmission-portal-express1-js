@@ -1,0 +1,66 @@
+<%- include('../header.ejs') %>
+    <div class="container">
+        <br></br>
+        <br></br>
+
+        <h1 class="text-center">Course display</h1>
+        <!--message passing-->
+        <% if(message.length> 0){ %>
+            <div class="alert alert-success">
+                <%= message %>
+            </div>
+
+
+            <% } %>
+
+                <table class="table table-bordered table-responsive">
+                    <tr>
+                        <th style="background-color: palevioletred;" scop="col">ID</th>
+                        <th style="background-color: palevioletred;" scop="col">Name</th>
+                        <th style="background-color: palevioletred;" scop="col">Email</th>
+                        <th style="background-color: palevioletred;" scop="col">Contact</th>
+                        <th style="background-color: palevioletred;" scop="col">Status</th>
+                        <th style="background-color: palevioletred;" scop="col">Comment</th>
+
+                        <th style="background-color: palevioletred;" scop="col">Action</th>
+
+
+                    </tr>
+                    <% d.forEach((item)=>{ %>
+                        <tr>
+                            <td>
+                                <%= item.id%>
+                            </td>
+                            <td>
+                                <%=item.name%>
+                            </td>
+                            <td>
+                                <%=item.email%>
+                            </td>
+                            <td>
+                                <%=item.phone%>
+                            </td>
+                            <td class="bg-warning">
+                                <%=item.status%>
+  
+
+                            </td>
+                            <td>
+                                <%=item.comment%>
+
+                            </td>
+                                                       <td>
+                                <a href="/courseView/<%= item.id %>" class="btn btn-info">view</a>
+                                <a href="/courseEdit/<%= item.id %>" class="btn btn-success">edit</a>
+
+                                <a href="/courseDelete/<%= item.id %>" class="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+
+
+                        <% }) %>
+
+                </table>
+
+    </div>
+    <%- include('../footer.ejs') %>

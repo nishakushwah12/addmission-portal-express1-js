@@ -1,0 +1,41 @@
+<%- include('../header.ejs') %>
+    <div class="container">
+        <br></br>
+        <br></br>
+
+        <h1 class="text-center">Course view</h1>
+        <table class="table table-border ">
+               
+            <tr>
+                <th style="background-color: palevioletred;" scop="col">ID</th>
+                <th style="background-color: palevioletred;" scop="col">Name</th>
+                <th style="background-color: palevioletred;" scop="col">Email</th>
+                <th style="background-color: palevioletred;" scop="col">Contact</th>
+                <th style="background-color: palevioletred;" scop="col">Action</th>
+                
+
+            </tr>
+            <tr>
+                    
+                    <td>
+                        <%= courseview.i %>
+                    </td>
+                    <td>
+                        <%=courseview.name%>
+                    </td>
+                    <td>
+                        <%=courseview.email%>
+                    </td>
+                    <td>
+                        <%=courseview.phone%>
+                    </td>
+                   
+                </tr>
+
+
+                
+
+        </table>
+
+    </div>
+    <%- include('../footer.ejs') %>

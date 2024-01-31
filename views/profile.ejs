@@ -1,0 +1,114 @@
+<%-include('./header.ejs')  %>
+<br></br>
+<br></br>
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-4 mt-2">
+    </div>
+    <div class="col-md-5 mt-5">
+      <div class="card" style="box-shadow: 20px;">
+      <h2 class="text-center fw-900">Profile Update</h2>
+      <% if(message.length> 0){ %>
+        <div class="alert alert-success">
+            <%= message %>
+        </div>
+
+
+        <% } %>
+    <div class="card-body px-5 ">
+      <img class="rounded-circle" src="<%= i.url %>" width="80px" height="80px"  alt="profile-image" style="margin-left: 38%;">
+     <div class="row">
+      <h4 class="text-center">Name: <%=n %></h4>
+         <h4 class="text-center">Eamil:<%=e%></h4>
+      <div class="col-md-6 mt-4">
+        
+        <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#updateProfile">Update Profile</button>
+     
+      </div>
+      <div class="col-md-6 mt-4">
+        <button class="btn btn-primary A" data-bs-toggle="modal" data-bs-target="#changePassword">Change Password</button>
+
+      </div>
+
+      </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 mt-5">
+    
+    </div>
+
+  </div>
+  </div>
+
+
+  
+</div>
+</div>
+<!--profile update model -->
+<div class="modal fade" id="updateProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Profile
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form action="/updateProfile" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="">Name</label>
+          <input type="text" name="name" value="<%= n%>" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="">Email</label>
+          <input type="email" name="email" value="<%= e%>" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="">Image</label>
+          <input type="file" name="image" class="form-control" >
+        <img src="<%= i.url %>" width="50px" alt="">
+        </div>
+        <div class=" text-center">
+          <button type="submit" class="btn btn-primary ">Update Profile</button>
+        </div>
+       </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<!-- change password -->
+<div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/ChangePassword" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label>Old Password:</label>
+            <input type="password" name="OldPassword" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>New Password:</label>
+            <input type="password" name="NewPassword" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label>Confirm Password:</label>
+            <input type="password" name="ConfirmPassword" class="form-control">
+          </div>
+             <button class="btn btn-info" type="submit">Change Password</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<%-include('./footer.ejs')  %>
