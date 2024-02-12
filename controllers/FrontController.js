@@ -1,4 +1,4 @@
-const UserModel = require('../models/user')
+const UserModel = require('../models/user');
 
 const TeacherModel = require('../models/teacher')
 const bcrypt = require("bcrypt");
@@ -214,6 +214,7 @@ class FrontController {
 
                         })
                         await result.save()
+                        req.flash('error', 'Register successfully please login')
                         res.redirect('/')
 
                     }
@@ -246,22 +247,22 @@ class FrontController {
             //console.log(req.body)
             const { email, password } = req.body
             if (email && password) {
-                const user = await UserModel.findOne({ email: email })
+                const User = await UserModel.findOne({ email: email })
                 //console.log(user)
-                if (user != null) {
+                if (User != null) {
 
-                    const ismatch = await bcrypt.compare(password, user.password)
+                    const ismatch = await bcrypt.compare(password, User.password)
                     if (ismatch) {
                         // console.log(user.role)
-                        if (user.role == 'admin') {
-                            const token = jwt.sign({ ID: user._id }, 'nisha@12345');
+                        if (User.role == 'admin') {
+                            const token = jwt.sign({ ID: User._id }, 'nisha@12345');
                             //console.log(token);
                             res.cookie('token', token)
                             res.redirect('/admin/dashboard')
 
                         }
-                        if (user.role == 'user') {
-                            const token = jwt.sign({ ID: user._id }, 'nisha@12345');
+                        if (User.role == 'User') {
+                            const token = jwt.sign({ ID: User._id }, 'nisha@12345');
                             //console.log(token);
                             res.cookie('token', token)
                             res.redirect('/dashboard')
