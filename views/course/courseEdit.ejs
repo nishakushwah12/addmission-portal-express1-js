@@ -1,7 +1,9 @@
 <%- include('../header.ejs') %>
     <div class="container">
         <br></br>
-     
+        <br></br>
+        <br></br>
+
         <h1 class="text-center py-4">Course Edit</h1>
         <form action="/courseUpdate/<%=courseedit.id %>" method="post">
             <div class="mb-3">
@@ -30,7 +32,8 @@
               <label>Course:</label>
               <input type="text" name="course" value="<%= courseedit.course %>" class="form-control">
             </div>
-            <button class="btn btn-info" type="submit">Update</button>
+
+            <button class="btn btn-success my-3" type="submit">Update</button>
           </form>
       
     </div>
