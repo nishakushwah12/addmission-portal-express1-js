@@ -299,5 +299,31 @@ class FrontController {
 
         }
     }
+
+    //forgetpassword
+
+
+    // static forgotPasswordVerify = async (req, res) => {
+    //     try {
+    //       const { email } = req.body;
+    //       const userData = await UserModel.findOne({ email: email });
+    //       //console.log(userData)
+    //       if (userData) {
+    //         const randomString = randomstring.generate();
+    //         await UserModel.updateOne(
+    //           { email: email },
+    //           { $set: { token: randomString } }
+    //         );
+    //         this.sendEmail(userData.name, userData.email, randomString);
+    //         req.flash("success", "Plz Check Your mail to reset Your Password!");
+    //         res.redirect("/");
+    //       } else {
+    //         req.flash("error", "You are not a registered Email");
+    //         res.redirect("/");
+    //       }
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   };
 }
 module.exports = FrontController

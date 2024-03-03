@@ -68,7 +68,8 @@
                           <input type="text" name="email" class="form-control form-control-lg" placeholder="Email">
                         </div>
                         <div class="form-group mb-5">
-                          <input  type="password" name="password" class="form-control form-control-lg" placeholder="Password">
+                          <input type="password" name="password" class="form-control form-control-lg"
+                            placeholder="Password">
                         </div>
                         <div class="form-group text-center">
                           <button type="submit" class="btn btn-lg btn-block"
@@ -77,8 +78,13 @@
                           <div class="mt-4">
                             <span class=" mb-5 pb-lg-2">DON`T HAVE AN ACCOUNT?</span>
                             <a href="/register" style="color: #393f81;">REGISTER NOW</a>
-                          </div>
+                       </div>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#Forgot">Forgot
+                            Password</a>
+                        
+                        
                         </div>
+                        
                       </form>
 
                 </div>
@@ -89,6 +95,64 @@
       </div>
     </div>
   </section>
+
+  <!--Forgot Password -->
+  <div class="modal fade" id="Forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Forget Password</h1>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form action="/forgot_Password" method="post">
+
+
+            <div class="mb-3">
+              <label for="">Email</label>
+              <input type="text" name="email" class="form-control">
+            </div>
+
+
+
+
+            <button type="submit" class="btn btn-success">Submit</button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div> 
+  <!-- <!-4-End Btech Modal -->
+  <!-- <div class="modal fade" id="Forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/forgot_Password" method="post">
+            <div class="mb-3">
+              <label>Name:</label>
+              <input type="text" name="name" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label>Email:</label>
+              <input type="email" name="email" class="form-control">
+            </div>
+            
+            <button class="btn btn-info" type="submit">Submit</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div> -->
+
 </body>
 
 </html>
