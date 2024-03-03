@@ -17,6 +17,11 @@
 
   <!-- Bootsstrap Link -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+
+
+  <!-- link model -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <style>
     .logo1 {
       width: 100%;
@@ -51,7 +56,7 @@
                     <img src="/images/logo.png" class="register_logo" width="120px" height="120px" alt="....">
                   </div>
                   <h5 class="text-center regs_heading mb-3 pb-3">Login</h5>
-
+            <!-- passing message -->
                   <% if(message.length> 0){ %>
                     <div class="alert alert-danger">
                       <%= message %>
@@ -59,6 +64,16 @@
 
 
                     <% } %>
+                    <!-- passing message -->
+                  <% if(msg.length> 0){ %>
+                    <div class="alert alert-sucess">
+                      <%= msg %>
+                    </div>
+
+
+                    <% } %>
+
+
 
 
 
@@ -79,9 +94,7 @@
                             <span class=" mb-5 pb-lg-2">DON`T HAVE AN ACCOUNT?</span>
                             <a href="/register" style="color: #393f81;">REGISTER NOW</a>
                        </div>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#Forgot">Forgot
-                            Password</a>
-                        
+                       <a href="#" data-bs-toggle="modal" data-bs-target="#Forgot">ForgotPassword</a>                        
                         
                         </div>
                         
@@ -94,65 +107,40 @@
         </div>
       </div>
     </div>
+    
   </section>
-
-  <!--Forgot Password -->
-  <div class="modal fade" id="Forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!--Forgot Password -->
+<div class="modal fade" id="Forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Forget Password</h1>
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Forget Password</h1>
 
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              
+                      <form action="/forgot_Password" method="post">
+                          
 
-          <form action="/forgot_Password" method="post">
-
-
-            <div class="mb-3">
-              <label for="">Email</label>
-              <input type="text" name="email" class="form-control">
-            </div>
-
-
+                          <div class="mb-3">
+                              <label for="">Email</label>
+                              <input type="text" name="email" class="form-control">
+                          </div>
 
 
-            <button type="submit" class="btn btn-success">Submit</button>
 
-          </form>
-        </div>
+
+                          <button type="submit" class="btn btn-success">Submit</button>
+
+                      </form>
+          </div>
 
       </div>
-    </div>
-  </div> 
-  <!-- <!-4-End Btech Modal -->
-  <!-- <div class="modal fade" id="Forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="/forgot_Password" method="post">
-            <div class="mb-3">
-              <label>Name:</label>
-              <input type="text" name="name" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label>Email:</label>
-              <input type="email" name="email" class="form-control">
-            </div>
-            
-            <button class="btn btn-info" type="submit">Submit</button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div> -->
-
+  </div>
+</div>
+<!-- <!-4-End Btech Modal --> -->
+ 
 </body>
 
 </html>

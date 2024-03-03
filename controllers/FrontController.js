@@ -1,5 +1,7 @@
 const UserModel = require('../models/user');
-
+// nodemailer require
+const nodemailer = require("nodemailer");
+const randomstring = require("randomstring");
 const TeacherModel = require('../models/teacher')
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
@@ -21,7 +23,7 @@ class FrontController {
     static Login = async (req, res) => {
 
         try {
-            res.render('login', { message: req.flash('error') })
+            res.render('login', { message: req.flash('error'), msg: req.flash('sucess') })
         } catch (error) {
 
         }
@@ -172,9 +174,6 @@ class FrontController {
 
         }
     }
-
-
-
     // insert data insertreg
     static insertreg = async (req, res) => {
 
@@ -240,7 +239,6 @@ class FrontController {
 
         }
     }
-
     // verify login data 
     static verifyLogin = async (req, res) => {
         try {
@@ -288,7 +286,6 @@ class FrontController {
 
         }
     }
-
     static logout = async (req, res) => {
 
         try {
@@ -299,31 +296,58 @@ class FrontController {
 
         }
     }
-
     //forgetpassword
+    static forgotPasswordVerify = async (req, res) => {
+        try {
+          const { email } = req.body;
+          const userData = await UserModel.findOne({ email: email });
+          //console.log(userData)
+          if (userData) {
+            const randomString = randomstring.generate();
+            await UserModel.updateOne(
+              { email: email },
+              { $set: { token: randomString } }
+            );
+            this.sendEmail(userData.name, userData.email, randomString);
+            req.flash("success", "Plz Check Your mail to reset Your Password!");
+            res.redirect("/");
+          } else {
+            req.flash("error", "You are not a registered Email");
+            res.redirect("/");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    //   send email
+    static sendEmail = async (name, email, token) => {
+        // console.log(name,email,status,comment)
+        // connenct with the smtp server
+    
+        let transporter = await nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 587,
+    
+          auth: {
+            user: "nishakushwah374@gmail.com",
+            pass: "cvwnetuasnhzotfo",
+          },
+        });
+        let info = await transporter.sendMail({
+          from: "test@gmail.com", // sender address
+          to: email, // list of receivers
+          subject: "Reset Password", // Subject line
+          text: "heelo", // plain text body
+          html:
+            "<p>Hii " +
+            name +
+            ',Please click here to <a href="http://localhost:3000/reset-password?token=' +
+            token +
+            '">Reset</a>Your Password.',
+        });
+      };
 
 
-    // static forgotPasswordVerify = async (req, res) => {
-    //     try {
-    //       const { email } = req.body;
-    //       const userData = await UserModel.findOne({ email: email });
-    //       //console.log(userData)
-    //       if (userData) {
-    //         const randomString = randomstring.generate();
-    //         await UserModel.updateOne(
-    //           { email: email },
-    //           { $set: { token: randomString } }
-    //         );
-    //         this.sendEmail(userData.name, userData.email, randomString);
-    //         req.flash("success", "Plz Check Your mail to reset Your Password!");
-    //         res.redirect("/");
-    //       } else {
-    //         req.flash("error", "You are not a registered Email");
-    //         res.redirect("/");
-    //       }
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   };
+
 }
 module.exports = FrontController

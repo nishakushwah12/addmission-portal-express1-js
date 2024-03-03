@@ -19,6 +19,9 @@ const UserSchema = new mongoose.Schema({
         type:String,
         default:'User'
     },
+    token:{
+      type:String
+  },
     image: {
         public_id: {
           type: String,
@@ -28,6 +31,8 @@ const UserSchema = new mongoose.Schema({
           type: String,
           required: true,
         },
+
+       
       }
 
 

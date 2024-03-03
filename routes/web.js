@@ -40,7 +40,7 @@ route.get('/admin/dashboard', checkUserAuth, AdminController.getUserDisplay)
 route.post('/update_status/:id', checkUserAuth, AdminController.updateStatus)
 
 //forget password
-//  route.post('/forgot_Password', FrontController.forgotPasswordVerify)
+  route.post('/forgot_Password', FrontController.forgotPasswordVerify)
 
 
 
