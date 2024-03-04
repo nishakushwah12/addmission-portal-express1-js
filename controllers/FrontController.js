@@ -319,6 +319,37 @@ class FrontController {
           console.log(error);
         }
       };
+
+      //resetpassword
+      static reset_Password = async (req, res) => {
+        try {
+          const token = req.query.token;
+          const tokenData = await UserModel.findOne({ token: token });
+          if (tokenData) {
+            res.render("reset-password", { user_id: tokenData._id });
+          } else {
+            res.render("404");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+
+      static reset_Password1 = async (req, res) => {
+        try {
+          const { password, user_id } = req.body;
+          const newHashPassword = await bcrypt.hash(password, 10);
+          await UserModel.findByIdAndUpdate(user_id, {
+            password: newHashPassword,
+            token: "",
+          });
+          req.flash("success", "Reset Password Updated successfully ");
+          res.redirect("/");
+        } catch (error) {
+          console.log(error);
+        }
+      };
     //   send email
     static sendEmail = async (name, email, token) => {
         // console.log(name,email,status,comment)
@@ -341,7 +372,7 @@ class FrontController {
           html:
             "<p>Hii " +
             name +
-            ',Please click here to <a href="http://localhost:3000/reset-password?token=' +
+            ',Please click here to <a href="http://localhost:5000/reset-password?token=' +
             token +
             '">Reset</a>Your Password.',
         });

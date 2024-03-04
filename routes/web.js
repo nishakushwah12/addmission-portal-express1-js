@@ -41,8 +41,10 @@ route.post('/update_status/:id', checkUserAuth, AdminController.updateStatus)
 
 //forget password
   route.post('/forgot_Password', FrontController.forgotPasswordVerify)
+//resetpassword
+route.get('/reset-password', FrontController.reset_Password )
 
-
-
+//
+route.post('/reset_Password1',FrontController.reset_Password1)
 
 module.exports = route

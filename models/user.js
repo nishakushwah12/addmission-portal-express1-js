@@ -22,6 +22,11 @@ const UserSchema = new mongoose.Schema({
     token:{
       type:String
   },
+  is_verified:{
+      type:Number,
+      default:0
+  },
+  
     image: {
         public_id: {
           type: String,
