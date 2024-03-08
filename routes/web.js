@@ -46,5 +46,6 @@ route.get('/reset-password', FrontController.reset_Password )
 
 //
 route.post('/reset_Password1',FrontController.reset_Password1)
-
+//verify email
+route.get('/verify', FrontController.verify)
 module.exports = route
