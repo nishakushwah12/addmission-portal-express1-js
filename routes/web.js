@@ -4,10 +4,11 @@ const route = express.Router()
 const checkUserAuth = require('../middleware/auth')
 const CourseController = require('../controllers/CourseController')
 const AdminController = require('../controllers/AdminController')
-
+const isLogin = require('../middleware/isLogin')
+const adminRole= require('../middleware/adminRole')
 
 //route path
-route.get('/', FrontController.Login)
+route.get('/',isLogin, FrontController.Login)
 route.get('/Register', FrontController.Register)
 route.get('/Dashboard', checkUserAuth, FrontController.dashboard)
 
@@ -35,7 +36,7 @@ route.get('/courseDelete/:id', checkUserAuth, CourseController.courseDelete)
 route.post('/courseUpdate/:id', checkUserAuth, CourseController.courseUpdate)
 
 // admin controller
-route.get('/admin/dashboard', checkUserAuth, AdminController.getUserDisplay)
+route.get('/admin/dashboard', checkUserAuth,adminRole('admin'), AdminController.getUserDisplay)
 
 route.post('/update_status/:id', checkUserAuth, AdminController.updateStatus)
 

@@ -310,14 +310,14 @@ class FrontController {
                     const ismatch = await bcrypt.compare(password, User.password)
                     if (ismatch) {
                         // console.log(user.role)
-                        if (User.role == 'admin') {
+                        if (User.role == 'admin' && User.is_verified ==1) {
                             const token = jwt.sign({ ID: User._id }, 'nisha@12345');
                             //console.log(token);
                             res.cookie('token', token)
                             res.redirect('/admin/dashboard')
 
                         }
-                        if (User.role == 'User') {
+                        if (User.role == 'User' && User.is_verified ==1) {
                             const token = jwt.sign({ ID: User._id }, 'nisha@12345');
                             //console.log(token);
                             res.cookie('token', token)
